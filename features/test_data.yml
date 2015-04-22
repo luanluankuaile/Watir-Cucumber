@@ -1,0 +1,15 @@
+hoster:
+    title: husband
+    name: John Smith
+    age:  37
+spouse:
+    title: wife
+    name:  Jane Smith
+    age:   25
+children:
+    -  title: son
+       name: Jimmy Smith
+       age:  15
+    -  title: daughter
+       name: Jenny Smith
+       age:  12

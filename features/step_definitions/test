@@ -1,0 +1,12 @@
+|Number |Release |CardName |CardOwner |SourceName |Release-Next Count |Release-Live Count |NormalizedEvent% |Release Test Signoff |Comments
+|14988 |2014-08-r3 |nocard |Transportation |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |3538 |2505 |3530.94 |19 Aug 2014 |
+|14764 |2014-08-r1 |nocard |Itinerary |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |4 |5 |2000.0 |04 Aug 2014 |
+|14265 |2014-07-r3 |nocard |MTT |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |26 |2 |32500.0 |16 Jul 2014 |
+|13611 |2014-07-r1 |nocard |nocard |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |40 |6912 |14.47 |  |
+|13125 |2014-06-r1 |nocard |MTT |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |515 |49 |26275.51 |30 May 2014 |
+|12891 |2014-05-r3 |nocard |MTT |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |139 |2 |173750.0 |19 May 2014 |
+|12526 |2014-04-r5 |nocard |User E2E |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |103397 |47511 |5440.69 |29 Apr 2014 |
+|11765 |2014-04-r1 |nocard |MTT |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |149955 |47999 |7810.32 |01 Apr 2014 |
+|6931 |2013-12-r3 |nocard |OPD |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |10485 |836 |31354.67 |16 Dec 2013 |
+|6806 |2013-12-r1 |nocard |TAAP |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |9 |  |New |02 Dec 2013 |
+|5264 |2013-10-r3 |nocard |AD |expedia-base-com.expedia.e3.platform.presentation.session.impl.BaseSession |28184 |6395 |11017.98 |23 Oct 2013 |

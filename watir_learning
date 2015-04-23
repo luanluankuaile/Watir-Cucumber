@@ -1,0 +1,159 @@
+工作中用到watir，做web的自动化脚本。以前的自动化脚本是watir库的，只支持IE。
+
+现在为了支持多浏览器，search了下，发现可以用watir-webdriver。它支持IE，firefox，chrome。
+
+ 
+
+为了使用webdriver，必须对以前的脚本做些更改：
+
+1. require 'watir'
+
+改为
+require 'watir-webdriver'
+
+没有了watir库，这个很多函数都不能使用了，具体区别可以看这个文章：
+
+https://github.com/jarib/watir-webdriver/wiki/Comparison-with-Watir-1.X
+
+你可能会问，我同时使用2个库不可以吗，我试过，同时使用会报错的，不能共存。
+
+ 
+
+2. 处理弹出框，比如弹出一个确定按钮
+
+watir库是:  
+
+          $ie.javascript_dialog.button('OK').click
+web-driver库对应是: 
+
+          $browser.driver.switch_to.alert.accept
+
+          $browser.driver.switch_to.alert.dismiss
+
+ 
+
+（以下都是webdriver中支持的）
+
+3. 支持css定位
+
+$browser.element(:css=>".classname[title='#{name}']")
+
+ 
+
+4.支持parent，就是找它的上一级
+
+$browser.link(:text,name).parent().parent()
+
+ 
+
+5.当需要多属性定位时
+
+$browser.span(:class=>'ui-button-text',:text=>name)
+
+ 
+
+6.等待元素被加载后再执行的，default is 30 sec
+
+•Watir::Wait.until { ... }: where you can wait for a block to be true
+•object.when_present.set: where you can do something when it’s present
+•object.wait_until_present:; where you just wait until something is present
+•object.wait_while_present:; where you just wait until something disappears
+ 
+
+例如：
+
+btn=$browser.element(:css=>".content[title='hello’]").when_present(20).parent().button()
+btn.focus
+btn.click
+
+ 
+
+7.watir-webdriver中定位index是从0开始，watir是从1开始
+
+ 
+
+8.定位可以用多种方法，中间或用|
+
+cmd1="//input[@name='#{name1}']/../label[@class='abc'] | //textarea[@name='#{name1}']/../label[@class='abc']"
+
+$browser.element(:xpath,cmd1)
+
+ 
+
+如果是watir库，用
+
+browser.element_by_xpath("//area[contains(@href , 'ahello.jsp')]").click()
+
+xpath语法可以参考：http://aguang520.iteye.com/blog/830928
+
+ 
+
+9.定位table中行，可以用xpath也可以如下row，cell：
+
+tr1=$browser.element(:xpath,"//table/tbody/tr/td[contains(a,'#{name}')]").parent()
+
+ 
+
+obj=browser.div(:class=>'hidetable‘).table().when_present
+rows = obj.rows.size
+
+text=obj.row(:index,3)[1].text                   #td
+
+browser.table(:class => "aa").row(:index, 1).cell(:index,0).fire_event("onclick")   #td
+browser.table(:class => "aa").row(:index, 1).fire_event("onclick")   #tr
+
+ 
+
+10. 打印exception
+
+begin
+rescue Exception =>err1
+
+    print_message("Failed reason:" + err1)
+end
+
+ 
+
+11. 检查是否定位的到元素
+
+puts $browser.element(:text,name).parent().exist?     #true or false
+
+puts $browser.element(:text,name).parent()               #tag name
+
+ 
+
+12.处理checkbox
+
+$browser.checkbox(:name=>'aa').when_present(30).clear
+
+$browser.checkbox(:name=>'aa').when_present(30).set
+
+if not $browser.checkbox(:name=>'aa').when_present(30).checked?
+            return true
+end
+
+ 
+
+13. select list
+
+if flag
+            $browser.select_list(:name,name1).when_present(60).select_value(value1.to_s)
+else
+            $browser.select_list(:name,name1).when_present(60).select(value1.to_s)
+end
+
+ 
+
+14. input框
+
+$browser.text_field(:id,idname.to_s).when_present(10).set(value.to_s)
+
+value=$browser.input(:name=>name1).when_present(60).value
+
+ 
+
+ 参考网址：
+
+http://watirmelon.com/2010/12/14/watir-webdriver-a-detailed-introduction/
+http://rdoc.info/gems/watir-webdriver/0.3.5
+http://wiki.openqa.org/display/WTR/Tutorial
